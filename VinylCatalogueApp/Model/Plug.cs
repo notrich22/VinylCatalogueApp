@@ -3,17 +3,41 @@
     public class Plug : IDataProvider
     {
         // иммитация уникального Id
-        private static int id = 1;
+        private static int id = 4;
 
         // иммитация источника данных
         private static List<VinylDisk> VinylDisks =
-            new List<VinylDisk>();
+            new List<VinylDisk>()
+            {
+                new VinylDisk()
+                {
+                    Id = 1,
+                    Author="Metallica",
+                    Publisher="Etwas Records",
+                    DiskName="Kill'em all Full album"
+                    
+                },
+                new VinylDisk()
+                {
+                    Id = 2,
+                    Author="Led Zeppelin",
+                    Publisher="Etwas Records",
+                    DiskName="Stairway to heaven"
+                },
+                new VinylDisk()
+                {
+                    Id = 3,
+                    Author="Metallica",
+                    Publisher="Etwas Records",
+                    DiskName="Death magnetic"
+                },
+            };
 
         // имплементация методов-заглушек
-        public void CreateVinylDisk(VinylDisk application)
+        public void CreateVinylDisk(VinylDisk disk)
         {
-            application.Id = id++;  // делаем очередной id
-            VinylDisks.Add(application);
+            disk.Id = id++;  // делаем очередной id
+            VinylDisks.Add(disk);
         }
 
         public void DeleteVinylDisk(int id)
@@ -31,12 +55,12 @@
             return VinylDisks.First(obj => obj.Id == id);
         }
 
-        public void UpdateVinylDisk(VinylDisk application)
+        public void UpdateVinylDisk(VinylDisk disk)
         {
-            var VinylDisk = GetVinylDisk(application.Id);
-            VinylDisk.Publisher = application.Publisher;
-            VinylDisk.Author = application.Author;
-            VinylDisk.DiskName = application.DiskName;
+            var VinylDisk = GetVinylDisk(disk.Id);
+            VinylDisk.Publisher = disk.Publisher;
+            VinylDisk.Author = disk.Author;
+            VinylDisk.DiskName = disk.DiskName;
         }
     }
 }
